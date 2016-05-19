@@ -29,7 +29,7 @@ class ImageReader {
 		MarkCorner position;
 	};
 
-	ImageReader()
+	ImageReader()  : enable_mark(EMPTY_MARK)
 	{
 		FreeImage_Initialise();
 		std::cout<<"FreeImage:"<<FreeImage_GetVersion()<<std::endl;
