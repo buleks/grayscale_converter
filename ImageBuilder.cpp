@@ -13,7 +13,13 @@ bool ImageBuilder::readfile(std::string img_filename)
 	return true;
 }
 
-void ImageBuilder::rotate()
+void ImageBuilder::rotatecw()
+{
+	FIBITMAP *old_bitmap = bitmap;
+	bitmap = FreeImage_Rotate(bitmap,270);
+	FreeImage_Unload(old_bitmap);	
+}
+void ImageBuilder::rotateccw()
 {
 	FIBITMAP *old_bitmap = bitmap;
 	bitmap = FreeImage_Rotate(bitmap,90);

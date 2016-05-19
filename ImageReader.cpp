@@ -1,17 +1,34 @@
 #include "ImageReader.h"
 #include <iostream>
 
+void ImageReader::converttograyscale()
+{
+	this->enable_grayscale = true;	
+}
+
+void ImageReader::rotate(Rotationdir dir)
+{
+	enable_rotate = dir;
+}
+void ImageReader::addmark(Mark mark)
+{
+	enable_mark = mark;
+}
 void ImageReader::convert(void)
 {
 	
-//	if(rotate)
-//	{
-	//	img->rotate();
-//	}
-//	if(grayscale)
-//	{
-//		img->grayscale();
-//	}
+	if(enable_rotate == CW)
+	{
+		img->rotatecw();
+	} 
+	else if(enable_rotate == CCW)
+	{
+		img->rotateccw();
+	}
+	if(enable_grayscale)
+	{
+		img->grayscale();
+	}
 //	if(mark)
 //	{
 	//	img->addmark("Z&G");

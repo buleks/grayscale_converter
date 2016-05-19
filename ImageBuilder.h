@@ -35,7 +35,8 @@ class ImageBuilder {
 	}
 	
 	bool readfile(std::string img_filename);
-	void rotate();
+	void rotatecw();
+	void rotateccw();
 	void grayscale();
 	void addmark(std::string sign);
 	
