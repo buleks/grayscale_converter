@@ -8,12 +8,16 @@ void ImageReader::convert(void)
 	{
 		img->rotate();
 	}
+	if(grayscale)
+	{
+		img->grayscale();
+	}
 }
 void ImageReader::set_parameters(bool mark,bool rotate,bool grayscale)
 {
-	mark = mark;
+	this->mark = mark;
 	this->rotate = rotate;
-	grayscale = grayscale;
+	this->grayscale = grayscale;
 }
 void ImageReader::set_image(ImageBuilder *image,std::string filename)
 { 

@@ -28,7 +28,10 @@ class ImageBuilder {
 	{
 		bitmap = FreeImage_Rotate(bitmap,90);	
 	}
-	
+	void grayscale()
+	{
+		bitmap = FreeImage_ConvertToGreyscale(bitmap);
+	}
 	
 };
 
