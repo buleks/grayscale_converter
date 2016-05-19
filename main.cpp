@@ -13,6 +13,7 @@ int main()
 	//conv.set_parameters(true,false,false);
 	//conv.converttograyscale();
 	//conv.rotate(ImageReader::CW);
+	addmark({"Z&G",BOTTOM_LEFT});
 	conv.convert();
 	img.save("test.png");
 	return 0;

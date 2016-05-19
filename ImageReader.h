@@ -46,7 +46,6 @@ class ImageReader {
 	void addmark(Mark mark);
 	void converttograyscale();
 	void rotate(Rotationdir dir);
-	//void set_parameters(bool mark,bool rotate,bool grayscale);
 	void set_image(ImageBuilder *image,std::string filename);
 };
 

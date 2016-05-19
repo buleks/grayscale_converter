@@ -29,17 +29,11 @@ void ImageReader::convert(void)
 	{
 		img->grayscale();
 	}
-//	if(mark)
-//	{
-	//	img->addmark("Z&G");
-	//}
+	if(enable_mark.position != EMPTY_MARK)
+	{
+		img->addmark("Z&G");
+	}
 }
-//void ImageReader::set_parameters(bool mark,bool rotate,bool grayscale)
-//{
-//	this->mark = mark;
-//	this->rotate = rotate;
-//	this->grayscale = grayscale;
-//}
 void ImageReader::set_image(ImageBuilder *image,std::string filename)
 { 
 	img = image;
