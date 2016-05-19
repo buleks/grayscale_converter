@@ -24,6 +24,11 @@ class ImageReader {
 		std::cout<<"FreeImage:"<<FreeImage_GetVersion()<<std::endl;
 	}
 	
+	~ImageReader()
+	{
+		FreeImage_DeInitialise();
+	}
+	
 	void convert(void);
 	void set_parameters(bool mark,bool rotate,bool grayscale);
 	void set_image(ImageBuilder *image,std::string filename);

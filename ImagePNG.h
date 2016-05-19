@@ -5,6 +5,7 @@
 #include "ImageBuilder.h"
 
 class ImagePNG : public ImageBuilder {
+	public:
 	void save(std::string name);
 };
 
