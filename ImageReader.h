@@ -10,15 +10,26 @@
 
 
 class ImageReader {
+	
+	public:
+		enum MarkCorner {EMPTY_MARK=0,BOTTOM_LEFT,TOP_LEFT,RIGHT_BOTTOM,RIGHT_TOP};
+		enum Rotationdir {NONE_ROTATION=0,CW,CCW}; 
+	
 	private:
 	ImageBuilder *img;
-	bool mark;
-	bool rotate;
-	bool grayscale;
+	MarkCorner enable_mark;
+	Rotationdir enable_rotate;
+	bool enable_grayscale;
 	
 	
 	public:
-	ImageReader() : mark(false),rotate(false),grayscale(false)
+	
+	struct Mark {
+		std::string mark_txt;
+		MarkCorner position;
+	};
+
+	ImageReader()
 	{
 		FreeImage_Initialise();
 		std::cout<<"FreeImage:"<<FreeImage_GetVersion()<<std::endl;
@@ -28,9 +39,11 @@ class ImageReader {
 	{
 		FreeImage_DeInitialise();
 	}
-	
 	void convert(void);
-	void set_parameters(bool mark,bool rotate,bool grayscale);
+	void addmark();
+	void converttograyscale();
+	void rotate(Rotationdir dir);
+	//void set_parameters(bool mark,bool rotate,bool grayscale);
 	void set_image(ImageBuilder *image,std::string filename);
 };
 

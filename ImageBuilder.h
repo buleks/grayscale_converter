@@ -20,18 +20,24 @@ class ImageBuilder {
 	FT_GlyphSlot  slot;
 	FT_Vector     pen;  
 	
-	 
+
+	
 	
 	public:
+	ImageBuilder()
+	{
+		
+	}
+	
+	~ImageBuilder()
+	{
+		FreeImage_Unload(bitmap);
+	}
+	
 	bool readfile(std::string img_filename);
-	void rotate()
-	{
-		bitmap = FreeImage_Rotate(bitmap,90);	
-	}
-	void grayscale()
-	{
-		bitmap = FreeImage_ConvertToGreyscale(bitmap);
-	}
+	void rotate();
+	void grayscale();
+	void addmark(std::string sign);
 	
 };
 
