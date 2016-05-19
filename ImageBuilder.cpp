@@ -1,6 +1,6 @@
 #include "ImageBuilder.h"
 
-void Imagebuilder::readfile(std::string img_filename)
+void ImageBuilder::readfile(std::string img_filename)
 {
 	
 }

@@ -14,5 +14,5 @@ void ImageReader::set_parameters(bool mark,bool rotate,bool grayscale)
 void ImageReader::set_image(ImageBuilder *image,std::string filename)
 { 
 	img = image;
-	img.readfile(filename);
+	img->readfile(filename);
 }

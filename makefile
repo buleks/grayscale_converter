@@ -4,7 +4,7 @@ CPPFLAGS=-lfreeimage -lfreetype -I/usr/include/freetype2
 OBJS=main.o ImageReader.o ImageBuilder.o ImagePNG.o ImageJPEG.o
 
 conv: $(OBJS)
-	$(CXX) $^ -o $@
+	$(CXX) $(CPPFLAGS) $^ -o $@
 
 $(OBJS): %.o : %.cpp
 	$(CXX) -c $(CPPFLAGS) $< -o $@ 
