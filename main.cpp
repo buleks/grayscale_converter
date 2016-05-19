@@ -11,8 +11,8 @@ int main()
 	ImageReader conv;
 	conv.set_image(&img,"Main.jpg");
 	//conv.set_parameters(true,false,false);
-	//conv.converttograyscale();
-	//conv.rotate(ImageReader::CW);
+	conv.converttograyscale();
+	conv.rotate(ImageReader::CW);
 	conv.addmark({"Z&G",ImageReader::BOTTOM_LEFT});
 	conv.convert();
 	img.save("test.png");

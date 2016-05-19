@@ -38,7 +38,8 @@ void ImageBuilder::addmark(std::string sign)
 	
 	int  i, j;
 	int x_prev = 0;
-
+	int xoffset = 50;
+	int yoffset = 50;
 
 	int w = FreeImage_GetWidth(bitmap);
 	int h = FreeImage_GetHeight(bitmap);
@@ -78,7 +79,7 @@ void ImageBuilder::addmark(std::string sign)
 							color.rgbRed = 255.0;
 							color.rgbGreen = 0.0 ;
 							color.rgbBlue = 0.0;
-							FreeImage_SetPixelColor(bitmap,x_prev+j,50-i,&color);
+							FreeImage_SetPixelColor(bitmap,x_prev+j+xoffset,yoffset-i,&color);
 						}
 					}
 				

@@ -25,13 +25,13 @@ void ImageReader::convert(void)
 	{
 		img->rotateccw();
 	}
-	if(enable_grayscale)
-	{
-		img->grayscale();
-	}
 	if(enable_mark.position != EMPTY_MARK)
 	{
 		img->addmark("Z&G");
+	}
+	if(enable_grayscale)
+	{
+		img->grayscale();
 	}
 }
 void ImageReader::set_image(ImageBuilder *image,std::string filename)
