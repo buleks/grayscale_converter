@@ -20,6 +20,8 @@ class ImageReader {
 		std::string mark_txt;
 		MarkPosition position;
 		bool show;
+		unsigned int xoffset;
+		unsigned int yoffset;
 	};
 
 	
@@ -33,7 +35,7 @@ class ImageReader {
 	public:
 	
 	
-	ImageReader()  : enable_rotate(NONE_ROTATION),enable_grayscale(false),enable_mark({"",BOTTOM_RIGHT,false})
+	ImageReader()  : enable_rotate(NONE_ROTATION),enable_grayscale(false),enable_mark({"",BOTTOM_RIGHT,false,50,50})
 	{
 		FreeImage_Initialise();
 		std::cout<<"FreeImage:"<<FreeImage_GetVersion()<<std::endl;
@@ -47,6 +49,8 @@ class ImageReader {
 	void addmark(Mark mark);
 	void addmark(std::string text);
 	void setmarkposition(MarkPosition position);
+	void setmarkxoffset(unsigned int xoffset);
+	void setmarkyoffset(unsigned int yoffset);
 	void converttograyscale();
 	void rotate(Rotationdir dir);
 	void set_image(ImageBuilder *image,std::string filename);

@@ -87,6 +87,14 @@ int main(int argc, char **argv)
 				}
 			break;
 			
+			case 'x':
+			
+			break;
+			
+			case 'y':
+			
+			break;
+			
 			case 'v':
 				cout<<"Version 0.0.1"<<endl;
 				return 0;
