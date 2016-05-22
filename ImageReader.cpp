@@ -27,7 +27,7 @@ void ImageReader::convert(void)
 	}
 	if(enable_mark.position != EMPTY_MARK)
 	{
-		img->addmark("Z&G");
+		img->addmark("Z&G",(ImageBuilder::MarkerPosition)enable_mark.position,50,50);
 	}
 	if(enable_grayscale)
 	{

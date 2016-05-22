@@ -1,5 +1,5 @@
 CXX=g++
-CPPFLAGS=-lfreeimage -lfreetype -I/usr/include/freetype2 -std=gnu++11
+CPPFLAGS=-lfreeimage -lfreetype -I/usr/include/freetype2 -std=gnu++11 -g
 
 OBJS=main.o ImageReader.o ImageBuilder.o ImagePNG.o ImageJPEG.o
 

@@ -32,17 +32,18 @@ void ImageBuilder::grayscale()
 	FreeImage_Unload(old_bitmap);
 }
 
-void ImageBuilder::addmark(std::string sign)
+void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,uint32_t yoffset)
 {
 	RGBQUAD color;
 	
 	int  i, j;
 	int x_prev = 0;
-	int xoffset = 50;
-	int yoffset = 50;
 
 	int w = FreeImage_GetWidth(bitmap);
 	int h = FreeImage_GetHeight(bitmap);
+	
+	int y_mark_offset=0;
+	int x_mark_offset=0;
 	
 	do 
 	{
@@ -63,6 +64,35 @@ void ImageBuilder::addmark(std::string sign)
 	
 			slot = face->glyph;
 		//std::cout<<"Wymiary:"<<w<<","<<h<<std::endl;
+		
+			if(pos == TOP_LEFT || pos == TOP_RIGHT )
+			{
+				error = FT_Load_Char( face, 'A', FT_LOAD_RENDER );
+				y_mark_offset = h-yoffset-slot->bitmap.rows;
+				if(y_mark_offset > h || y_mark_offset < 0)
+				{
+					y_mark_offset - slot->bitmap.rows;
+				}
+			}
+			
+			
+			if(pos == BOTTOM_RIGHT || pos == TOP_RIGHT )
+			{
+				//calculate sign width
+				int sign_width = 0;
+				for(int s =0; s < sign.length();s++)
+				{
+					error = FT_Load_Char( face, sign[s], FT_LOAD_RENDER );
+					if ( error )
+					continue; 
+					
+					sign_width+= slot->bitmap.width;
+				}
+				x_mark_offset = w - sign_width-2*xoffset;
+				
+			}
+			
+			
 			for(int s =0; s < sign.length();s++)
 			{
 				
@@ -79,7 +109,12 @@ void ImageBuilder::addmark(std::string sign)
 							color.rgbRed = 255.0;
 							color.rgbGreen = 0.0 ;
 							color.rgbBlue = 0.0;
-							FreeImage_SetPixelColor(bitmap,x_prev+j+xoffset,yoffset-i,&color);
+							int x_coord = x_prev+j+xoffset+x_mark_offset;
+							int y_coord = yoffset-i+y_mark_offset;
+							if(x_coord < w && y_coord < h)
+							{
+								FreeImage_SetPixelColor(bitmap,x_coord,y_coord,&color);
+							}
 						}
 					}
 				

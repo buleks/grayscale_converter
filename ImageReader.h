@@ -13,7 +13,7 @@ class ImageReader {
 	
 	public:
 		
-	enum MarkCorner {EMPTY_MARK=0,BOTTOM_LEFT,TOP_LEFT,RIGHT_BOTTOM,RIGHT_TOP};
+	enum MarkCorner {EMPTY_MARK=0,BOTTOM_LEFT,TOP_LEFT,BOTTOM_RIGHT,TOP_RIGHT};
 	enum Rotationdir {NONE_ROTATION=0,CW,CCW}; 
 		
 	struct Mark {

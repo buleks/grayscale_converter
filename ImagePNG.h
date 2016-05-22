@@ -6,7 +6,7 @@
 
 class ImagePNG : public ImageBuilder {
 	public:
-	void save(std::string name);
+	virtual void save(std::string name);
 };
 
 #endif

@@ -2,19 +2,68 @@
 #include <string>
 #include "ImageReader.h"
 #include "ImagePNG.h"
+#include <unistd.h>
+
 using namespace std;
 
 
-int main()
+int main(int argc, char **argv)
 {
-	ImagePNG img;
+	char c;
+	ImageBuilder *img = nullptr;
 	ImageReader conv;
-	conv.set_image(&img,"Main.jpg");
-	//conv.set_parameters(true,false,false);
-	conv.converttograyscale();
-	conv.rotate(ImageReader::CW);
-	conv.addmark({"Z&G",ImageReader::BOTTOM_LEFT});
+	while ((c = getopt (argc, argv, "gfsr:")) != -1)
+	{
+		switch(c)
+		{
+			case 'g': //grayscale
+				conv.converttograyscale();
+			break;
+			
+			case 's': //source
+			
+			break;
+			
+			case 'f': //format
+			
+			break;
+			
+			case 'r': //rotate
+				if(optarg != 0)
+				{
+					if(strcmp("cw",optarg) ==0 )
+					{
+						conv.rotate(ImageReader::CW);
+					}else if(strcmp("ccw",optarg) ==0)
+					{
+						conv.rotate(ImageReader::CCW);
+					}else
+					{
+						cout<<"\nInvalid option for -r(rotate) argument";
+					}
+				}
+			break;
+			
+			case '?':
+				cout<<"\nUnknown argument";
+				return 1;
+			break;
+			
+			
+		}
+	}
+	
+	if(img == nullptr)
+	{
+		img = new ImagePNG();
+	}
+
+	conv.set_image(img,"Main.jpg");
+	
+	//conv.addmark({"Z&G",ImageReader::BOTTOM_LEFT});
+	conv.addmark({"Z&G",ImageReader::TOP_RIGHT});
 	conv.convert();
-	img.save("test.png");
+	img->save("test.png");
+	delete img;
 	return 0;
 }
