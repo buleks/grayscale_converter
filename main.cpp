@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	char c;
 	ImageBuilder *img = nullptr;
 	ImageReader conv;
-	while ((c = getopt (argc, argv, "gt:sr:")) != -1)
+	while ((c = getopt (argc, argv, "gt:sr:m:")) != -1)
 	{
 		switch(c)
 		{
@@ -39,13 +39,8 @@ int main(int argc, char **argv)
 					}else if(strcmp("gif",optarg) ==0 )
 					{
 						img = new ImageGIF();
-					}else if(strcmp("tiff",optarg) ==0 )
-					{
-						
-					}else if(strcmp("bmp",optarg) ==0 )
-					{
-						
-					}else
+					}	
+					else
 					{
 						cout<<"\nDestination file type unknown";
 					}
@@ -68,6 +63,13 @@ int main(int argc, char **argv)
 				}
 			break;
 			
+			case 'm':
+				if(optarg != 0)
+				{
+					conv.addmark({optarg,ImageReader::BOTTOM_RIGHT});
+				}
+			break;
+			
 			case '?':
 				cout<<"\nUnknown argument";
 				return 1;
@@ -83,7 +85,6 @@ int main(int argc, char **argv)
 	}
 
 	conv.set_image(img,"Main.jpg");
-	conv.addmark({"Z&G",ImageReader::TOP_RIGHT});
 	conv.convert();
 	img->save("test");
 	delete img;

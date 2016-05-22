@@ -93,6 +93,7 @@ void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,
 			int first_letter_height = 0;
 			for(int s =0; s < sign.length();s++)
 			{
+				y_mark_offset=0;
 				error = FT_Load_Char( face, sign[s], FT_LOAD_RENDER );
 				if ( error )
 				continue; 
@@ -100,16 +101,18 @@ void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,
 				{
 					first_letter_height=slot->bitmap.rows;
 				}
+				letter_diff = first_letter_height-slot->bitmap.rows ;
 				if(pos == TOP_LEFT || pos == TOP_RIGHT )
 				{
-					letter_diff = first_letter_height-slot->bitmap.rows ;
-					y_mark_offset = h-yoffset-slot->bitmap.rows-2*letter_diff;
+					
+					y_mark_offset = h-yoffset-slot->bitmap.rows-letter_diff;
 					if(y_mark_offset > h || y_mark_offset < 0)
 					{
 						y_mark_offset - slot->bitmap.rows;
 					}
 				}
 				
+				y_mark_offset -= letter_diff;
 				for ( i = 0; i < slot->bitmap.rows; i++ )
 				{
 					for ( j = 0; j <slot->bitmap.width; j++ )
