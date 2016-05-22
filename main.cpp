@@ -82,17 +82,38 @@ int main(int argc, char **argv)
 					}
 					else
 					{
-						cout<<"Invalid argument for option -p. Specify -h for help";
+						cout<<"Invalid argument for option -p. Specify -h for help"<<endl;
 					}
 				}
 			break;
 			
 			case 'x':
-			
+				if(optarg != 0)
+				{
+					int offset = atoi(optarg);
+					if(offset != 0 && offset > 0)
+					{
+						conv.setmarkxoffset(offset);
+					}else
+					{
+						cout<<"Invalid number for -x option"<<endl;
+					}
+				}
+				
 			break;
 			
 			case 'y':
-			
+				if(optarg != 0)
+				{
+					int offset = atoi(optarg);
+					if(offset != 0 && offset > 0)
+					{
+						conv.setmarkyoffset(offset);
+					}else
+					{
+						cout<<"Invalid number for -y option"<<endl;
+					}
+				}
 			break;
 			
 			case 'v':
