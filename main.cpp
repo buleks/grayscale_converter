@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	char c;
 	ImageBuilder *img = nullptr;
 	ImageReader conv;
-	while ((c = getopt (argc, argv, "gt:sr:m:")) != -1)
+	while ((c = getopt (argc, argv, "gt:sr:m:vh")) != -1)
 	{
 		switch(c)
 		{
@@ -70,8 +70,22 @@ int main(int argc, char **argv)
 				}
 			break;
 			
+			case 'v':
+				cout<<"Version 0.0.1";
+				return 0;
+			break;
+			
+			case 'h':
+				cout<<"\nArguments -r ccw,cw - rotate image"<<endl;
+				cout<<"-t jpg,gif,png - output format type"<<endl;
+				cout<<"-m text - add string sign on image"<<endl;
+				cout<<"-g - converts image to grayscale";
+				
+				return 0;
+			break;
+			
 			case '?':
-				cout<<"\nUnknown argument";
+				cout<<"\nUnknown argument, use -h for description";
 				return 1;
 			break;
 			
