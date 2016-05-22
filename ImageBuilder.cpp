@@ -7,7 +7,7 @@ bool ImageBuilder::readfile(std::string img_filename)
 	bitmap = FreeImage_Load(FIF_JPEG,img_filename.c_str(),BMP_DEFAULT);
 	if(!bitmap)
 	{
-		std::cout<<"Cannot open image file:"<<img_filename;
+		std::cout<<"Cannot open image file:"<<img_filename<<std::endl;
 		return false;
 	}
 	return true;
@@ -65,15 +65,7 @@ void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,
 			slot = face->glyph;
 		//std::cout<<"Wymiary:"<<w<<","<<h<<std::endl;
 		
-			if(pos == TOP_LEFT || pos == TOP_RIGHT )
-			{
-				error = FT_Load_Char( face, 'A', FT_LOAD_RENDER );
-				y_mark_offset = h-yoffset-slot->bitmap.rows;
-				if(y_mark_offset > h || y_mark_offset < 0)
-				{
-					y_mark_offset - slot->bitmap.rows;
-				}
-			}
+
 			
 			
 			if(pos == BOTTOM_RIGHT || pos == TOP_RIGHT )
@@ -92,13 +84,29 @@ void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,
 				
 			}
 			
-			
+			int letter_diff = 0;
+			int first_letter_height = 0;
 			for(int s =0; s < sign.length();s++)
 			{
-				
+				//std::cout<<slot->bitmap.rows<<std::endl;
 				error = FT_Load_Char( face, sign[s], FT_LOAD_RENDER );
 				if ( error )
 				continue; 
+				if(s == 0 )
+				{
+					first_letter_height=slot->bitmap.rows;
+				}
+				if(pos == TOP_LEFT || pos == TOP_RIGHT )
+				{
+					letter_diff = first_letter_height-slot->bitmap.rows ;
+					//std::cout<<letter_diff<<std::endl;
+					y_mark_offset = h-yoffset-slot->bitmap.rows-2*letter_diff;
+					if(y_mark_offset > h || y_mark_offset < 0)
+					{
+						y_mark_offset - slot->bitmap.rows;
+					}
+				}
+				
 				//show_font(&slot->bitmap);
 				for ( i = 0; i < slot->bitmap.rows; i++ )
 				{
@@ -119,7 +127,7 @@ void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,
 					}
 				
 				}
-				x_prev += slot->bitmap.width;
+				x_prev += slot->bitmap.width+2;
 				
 
 			}

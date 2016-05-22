@@ -25,9 +25,9 @@ class ImageBuilder {
 	
 	public:
 	enum MarkerPosition {BOTTOM_LEFT=1,TOP_LEFT,BOTTOM_RIGHT,TOP_RIGHT};
-	ImageBuilder()
+	ImageBuilder() 
 	{
-		
+		bitmap = nullptr;
 	}
 	
 	~ImageBuilder()
