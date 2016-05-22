@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	char c;
 	ImageBuilder *img = nullptr;
 	ImageReader conv;
-	while ((c = getopt (argc, argv, "gt:sr:m:vh")) != -1)
+	while ((c = getopt (argc, argv, "gt:sr:m:vhp:")) != -1)
 	{
 		switch(c)
 		{
@@ -66,21 +66,29 @@ int main(int argc, char **argv)
 			case 'm':
 				if(optarg != 0)
 				{
-					conv.addmark({optarg,ImageReader::BOTTOM_RIGHT});
+					conv.addmark(optarg);
+				}
+			break;
+			
+			case 'p':
+				if(optarg != 0)
+				{
+					
 				}
 			break;
 			
 			case 'v':
-				cout<<"Version 0.0.1";
+				cout<<"Version 0.0.1"<<endl;
 				return 0;
 			break;
 			
 			case 'h':
 				cout<<"\nArguments -r ccw,cw - rotate image"<<endl;
 				cout<<"-t jpg,gif,png - output format type"<<endl;
-				cout<<"-m text - add string sign on image"<<endl;
-				cout<<"-g - converts image to grayscale";
-				
+				cout<<"-m text - add string marker on image"<<endl;
+				cout<<"-p bl,br,tl,tr - specify marker position default br(bottom right)"<<endl;
+				cout<<"-g - converts image to grayscale"<<endl;
+				cout<<"-v - shows version"<<endl;
 				return 0;
 			break;
 			
