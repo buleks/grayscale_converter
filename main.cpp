@@ -14,16 +14,12 @@ int main(int argc, char **argv)
 	char c;
 	ImageBuilder *img = nullptr;
 	ImageReader conv;
-	while ((c = getopt (argc, argv, "gt:sr:m:vhp:")) != -1)
+	while ((c = getopt (argc, argv, "gt:r:m:vhp:x:y:")) != -1)
 	{
 		switch(c)
 		{
 			case 'g': //grayscale
 				conv.converttograyscale();
-			break;
-			
-			case 's': //source
-			
 			break;
 			
 			case 't': //file type
@@ -58,7 +54,7 @@ int main(int argc, char **argv)
 						conv.rotate(ImageReader::CCW);
 					}else
 					{
-						cout<<"\nInvalid option for -r(rotate) argument";
+						cout<<"\nInvalid argument for option -r(rotate) argument";
 					}
 				}
 			break;
@@ -73,7 +69,21 @@ int main(int argc, char **argv)
 			case 'p':
 				if(optarg != 0)
 				{
-					
+					if(strcmp("bl",optarg) ==0 )
+					{
+						conv.setmarkposition(ImageReader::BOTTOM_LEFT);
+					}else if(strcmp("tl",optarg) ==0 )
+					{
+						conv.setmarkposition(ImageReader::TOP_LEFT);
+					} else if(strcmp("tr",optarg) ==0 )
+					{
+						conv.setmarkposition(ImageReader::TOP_RIGHT);
+					} else if(strcmp("br",optarg) ==0 ){
+					}
+					else
+					{
+						cout<<"Invalid argument for option -p. Specify -h for help";
+					}
 				}
 			break;
 			
@@ -87,6 +97,8 @@ int main(int argc, char **argv)
 				cout<<"-t jpg,gif,png - output format type"<<endl;
 				cout<<"-m text - add string marker on image"<<endl;
 				cout<<"-p bl,br,tl,tr - specify marker position default br(bottom right)"<<endl;
+				cout<<"-x - x offset for marker from corner(default 50px)"<<endl;
+				cout<<"-y - y offset for marker from corner(default 50px)"<<endl;
 				cout<<"-g - converts image to grayscale"<<endl;
 				cout<<"-v - shows version"<<endl;
 				return 0;
