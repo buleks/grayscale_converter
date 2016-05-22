@@ -2,8 +2,9 @@
 
 void ImageJPG::save(std::string name)
 {
+	std::string filename = name+".jpg";
 	if(bitmap != nullptr)
 	{
-		FreeImage_Save(FIF_JPEG,bitmap,name.c_str(),0);
+		FreeImage_Save(FIF_JPEG,bitmap,filename.c_str(),0);
 	}
 }

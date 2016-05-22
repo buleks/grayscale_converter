@@ -3,6 +3,7 @@
 #include "ImageReader.h"
 #include "ImagePNG.h"
 #include "ImageJPG.h"
+#include "ImageGIF.h"
 #include <unistd.h>
 
 using namespace std;
@@ -13,7 +14,7 @@ int main(int argc, char **argv)
 	char c;
 	ImageBuilder *img = nullptr;
 	ImageReader conv;
-	while ((c = getopt (argc, argv, "gf:sr:")) != -1)
+	while ((c = getopt (argc, argv, "gt:sr:")) != -1)
 	{
 		switch(c)
 		{
@@ -25,7 +26,7 @@ int main(int argc, char **argv)
 			
 			break;
 			
-			case 'f': //format
+			case 't': //file type
 				if(optarg != 0)
 				{
 					if(strcmp("png",optarg) ==0 )
@@ -37,13 +38,16 @@ int main(int argc, char **argv)
 						
 					}else if(strcmp("gif",optarg) ==0 )
 					{
-						//img = new ImageGIF();
+						img = new ImageGIF();
 					}else if(strcmp("tiff",optarg) ==0 )
 					{
 						
 					}else if(strcmp("bmp",optarg) ==0 )
 					{
 						
+					}else
+					{
+						cout<<"\nDestination file type unknown";
 					}
 				}
 			break;
@@ -79,11 +83,9 @@ int main(int argc, char **argv)
 	}
 
 	conv.set_image(img,"Main.jpg");
-	
-	//conv.addmark({"Z&G",ImageReader::BOTTOM_LEFT});
 	conv.addmark({"Z&G",ImageReader::TOP_RIGHT});
 	conv.convert();
-	img->save("test.png");
+	img->save("test");
 	delete img;
 	return 0;
 }

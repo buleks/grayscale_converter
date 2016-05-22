@@ -72,10 +72,6 @@ void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,
 									0 );   /* vertical device resolution      */
 	
 			slot = face->glyph;
-		//std::cout<<"Wymiary:"<<w<<","<<h<<std::endl;
-		
-
-			
 			
 			if(pos == BOTTOM_RIGHT || pos == TOP_RIGHT )
 			{
@@ -97,7 +93,6 @@ void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,
 			int first_letter_height = 0;
 			for(int s =0; s < sign.length();s++)
 			{
-				//std::cout<<slot->bitmap.rows<<std::endl;
 				error = FT_Load_Char( face, sign[s], FT_LOAD_RENDER );
 				if ( error )
 				continue; 
@@ -108,7 +103,6 @@ void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,
 				if(pos == TOP_LEFT || pos == TOP_RIGHT )
 				{
 					letter_diff = first_letter_height-slot->bitmap.rows ;
-					//std::cout<<letter_diff<<std::endl;
 					y_mark_offset = h-yoffset-slot->bitmap.rows-2*letter_diff;
 					if(y_mark_offset > h || y_mark_offset < 0)
 					{
@@ -116,7 +110,6 @@ void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,
 					}
 				}
 				
-				//show_font(&slot->bitmap);
 				for ( i = 0; i < slot->bitmap.rows; i++ )
 				{
 					for ( j = 0; j <slot->bitmap.width; j++ )
