@@ -4,7 +4,16 @@
 
 bool ImageBuilder::readfile(std::string img_filename)
 {
-	bitmap = FreeImage_Load(FIF_JPEG,img_filename.c_str(),BMP_DEFAULT);
+	FREE_IMAGE_FORMAT format;
+
+	format = FreeImage_GetFileType(img_filename.c_str());
+	if(format == FIF_UNKNOWN )
+	{
+		std::cout<<"File: "<<img_filename<<" unknown format"<<std::endl;
+		return false;
+	}
+
+	bitmap = FreeImage_Load(format,img_filename.c_str(),BMP_DEFAULT);
 	if(!bitmap)
 	{
 		std::cout<<"Cannot open image file:"<<img_filename<<std::endl;
@@ -84,7 +93,7 @@ void ImageBuilder::addmark(std::string sign,MarkerPosition pos,uint32_t xoffset,
 				
 			}
 			
-			int letter_diff = 0;
+			int letter_diff = 0; 
 			int first_letter_height = 0;
 			for(int s =0; s < sign.length();s++)
 			{

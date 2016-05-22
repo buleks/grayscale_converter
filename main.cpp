@@ -2,6 +2,7 @@
 #include <string>
 #include "ImageReader.h"
 #include "ImagePNG.h"
+#include "ImageJPG.h"
 #include <unistd.h>
 
 using namespace std;
@@ -12,7 +13,7 @@ int main(int argc, char **argv)
 	char c;
 	ImageBuilder *img = nullptr;
 	ImageReader conv;
-	while ((c = getopt (argc, argv, "gfsr:")) != -1)
+	while ((c = getopt (argc, argv, "gf:sr:")) != -1)
 	{
 		switch(c)
 		{
@@ -25,7 +26,26 @@ int main(int argc, char **argv)
 			break;
 			
 			case 'f': //format
-			
+				if(optarg != 0)
+				{
+					if(strcmp("png",optarg) ==0 )
+					{
+						//default is png
+					}else if(strcmp("jpg",optarg) ==0 )
+					{
+						img = new ImageJPG();
+						
+					}else if(strcmp("gif",optarg) ==0 )
+					{
+						//img = new ImageGIF();
+					}else if(strcmp("tiff",optarg) ==0 )
+					{
+						
+					}else if(strcmp("bmp",optarg) ==0 )
+					{
+						
+					}
+				}
 			break;
 			
 			case 'r': //rotate
