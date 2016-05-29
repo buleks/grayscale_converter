@@ -38,7 +38,7 @@ class ImageReader {
 	ImageReader()  : enable_rotate(NONE_ROTATION),enable_grayscale(false),enable_mark({"",BOTTOM_RIGHT,false,50,50})
 	{
 		FreeImage_Initialise();
-		std::cout<<"FreeImage:"<<FreeImage_GetVersion()<<std::endl;
+		//std::cout<<"FreeImage:"<<FreeImage_GetVersion()<<std::endl;
 	}
 	
 	~ImageReader()
@@ -53,7 +53,7 @@ class ImageReader {
 	void setmarkyoffset(unsigned int yoffset);
 	void converttograyscale();
 	void rotate(Rotationdir dir);
-	void set_image(ImageBuilder *image,std::string filename);
+	bool set_image(ImageBuilder *image,std::string filename);
 };
 
 #endif

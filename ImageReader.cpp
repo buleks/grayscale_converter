@@ -53,8 +53,8 @@ void ImageReader::convert(void)
 		img->grayscale();
 	}
 }
-void ImageReader::set_image(ImageBuilder *image,std::string filename)
+bool ImageReader::set_image(ImageBuilder *image,std::string filename)
 { 
 	img = image;
-	img->readfile(filename);
+	return img->readfile(filename);
 }
