@@ -8,10 +8,12 @@
 
 using namespace std;
 
+string Outputfilename(const string source);
 
 int main(int argc, char **argv)
 {
 	char c;
+	string source_filename;
 	ImageBuilder *img = nullptr;
 	ImageReader conv;
 	do
@@ -158,6 +160,7 @@ int main(int argc, char **argv)
 	
 			 if(conv.set_image(img,argv[index]))
 			 {
+				 source_filename = argv[index];
 				 img_found = true;
 				 break;
 			 }
@@ -171,11 +174,25 @@ int main(int argc, char **argv)
 
 		
 		conv.convert();
-		img->save("test");
+		img->save(Outputfilename(source_filename));
 		break;
 	}while(true);
 	
 	PROGRAM_CLOSE:
 	delete img;
 	return 0;
+}
+
+string Outputfilename(const string source)
+{
+	 string prefix = source;
+	 for(string::const_iterator i = source.begin(); i <= source.end(); ++i) 
+	 {
+		 if(*i == '.')
+		 {
+			 prefix = source.substr(0,i-source.begin());
+			 break;
+		 }
+	 }
+	return prefix+"_m";
 }
