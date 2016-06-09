@@ -585,8 +585,8 @@ x.save(&quot;dst&quot;)
 <XPD:ATTR name="Name" type="string">save</XPD:ATTR>
 <XPD:REF name="Owner">lGUgMjodEUyz8Lafb9VNOgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="micGRf/EYUqBTqrNF/Z29wAA">
-<XPD:ATTR name="Name" type="string">destination</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="2vFV/CZnkUu7mFUZMuJA/wAA">
+<XPD:ATTR name="Name" type="string">name</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">UJsN48Mt/U+YX1QQmCKNuAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -627,8 +627,8 @@ x.save(&quot;dst&quot;)
 <XPD:ATTR name="Name" type="string">save</XPD:ATTR>
 <XPD:REF name="Owner">aMwZ8PP+yEuIWgA9qlSNAgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="/fNIKfaGiESf8sjTUpRkKwAA">
-<XPD:ATTR name="Name" type="string">destination</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="i4HnI7pseEWLAcGjj/M6OAAA">
+<XPD:ATTR name="Name" type="string">name</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">5BqdTlpkzE6t2TEE4NHkUwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
