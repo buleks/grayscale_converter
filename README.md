@@ -1,1 +1,1 @@
-# mpims_converter
+# Simple color image to grayscale converter
